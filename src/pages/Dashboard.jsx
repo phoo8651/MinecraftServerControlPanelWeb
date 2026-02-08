@@ -60,17 +60,23 @@ export default function Dashboard() {
           : dt.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
       });
 
-      const worldNames = Object.keys(pts[0]?.world || {});
+      const firstWorld = pts.find(p => p.world && typeof p.world === "object")?.world || {};
+      const worldNames = Object.keys(firstWorld);
       const mkSeries = (field) => worldNames.map((name) => ({
         label: name,
-        data: pts.map((p) => Number(p.world?.[name]?.[field] ?? 0)),
+        data: pts.map((p) => {
+          const v = p.world?.[name]?.[field];
+          return (v === null || v === undefined) ? null : Number(v);
+        }),
       }));
+
+      const n = (v) => (v === null || v === undefined) ? null : Number(v);
 
       setMetrics({
         labels,
-        tps: pts.map(p => Number(p.tps ?? 0)),
-        mspt: pts.map(p => Number(p.mspt ?? 0)),
-        cpu: pts.map(p => Number(p.cpuPct ?? 0)),
+        tps: pts.map(p => n(p.tps)),
+        mspt: pts.map(p => n(p.mspt)),
+        cpu: pts.map(p => n(p.cpuPct)),
 
         worldMem: mkSeries("memMb"),
         worldPlayers: mkSeries("players"),
