@@ -113,7 +113,7 @@ export default function Layout({ children }) {
             Minecraft Server Control Panel © {year} <a href="mailto:torugi@torugi.com" target="_blank">Luneira Torugi</a> All right reserved.
           </div>
           <div className="sm:ml-auto text-xs text-slate-400 dark:text-slate-500">
-            <a href="https://chzzk.naver.com/273ff1afdeeb38b06043f6a908a3543f" target="_blank">Chzzk</a> | <a href="https://github.com/phoo8651">GitHub</a> | <a href="https://x.com/LuneiraTorugi" target="_blank">X</a>
+            <a href="https://toon.at/donate/torugi" target="_blank">Donation</a> | <a href="https://chzzk.naver.com/273ff1afdeeb38b06043f6a908a3543f" target="_blank">Chzzk</a> | <a href="https://github.com/phoo8651">GitHub</a> | <a href="https://x.com/LuneiraTorugi" target="_blank">X</a>
           </div>
         </div>
       </footer>

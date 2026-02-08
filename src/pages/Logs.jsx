@@ -147,10 +147,9 @@ export default function Logs() {
 
       let data;
       if (nextMode === "player") {
-        data = await api.playerLogs({
-          ...params,
-          player: playerQuery.trim(),
-        });
+        const pq = playerQuery.trim();
+        const req = { ...params, ...(pq ? { player: pq } : {}) };
+        data = await api.playerLogs(req);
       } else {
         data = await api.serverLogs(params);
       }
@@ -160,11 +159,13 @@ export default function Logs() {
       setItems(data.items ?? []);
     } catch (e) {
       setErr(e?.message || "Failed to fetch");
+      setItems([]);
+      setTotal(0);
     } finally {
       setBusy(false);
     }
   }
-  
+
   useEffect(() => {
     setType("all");
     setPage(1);
