@@ -159,7 +159,6 @@ export default function Dashboard() {
             </div>
             <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 p-3">
               <div className="text-xs text-slate-500 dark:text-slate-400">Disk</div>
-              <div className="text-lg font-bold mt-1">{status?.system?.diskUsedPct ?? "-"}%</div>
               <div className="text-lg font-bold mt-1">{fmt2(status?.system?.diskUsedPct)}%</div>
             </div>
             <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 p-3">
