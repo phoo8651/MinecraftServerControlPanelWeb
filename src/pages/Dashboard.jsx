@@ -60,10 +60,10 @@ export default function Dashboard() {
           : dt.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
       });
 
-      const worldNames = Object.keys(pts[0]?.worlds || {});
+      const worldNames = Object.keys(pts[0]?.world || {});
       const mkSeries = (field) => worldNames.map((name) => ({
         label: name,
-        data: pts.map((p) => Number(p.worlds?.[name]?.[field] ?? 0)),
+        data: pts.map((p) => Number(p.world?.[name]?.[field] ?? 0)),
       }));
 
       setMetrics({
