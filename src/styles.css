@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+/* 그래프 가독성: CSS 변수로 테마별 색상 통일 */
+:root{
+  --chart-text: 15 23 42;          /* slate-900 */
+  --chart-grid: 148 163 184;       /* slate-400 */
+  --chart-line: 79 70 229;         /* indigo-600 */
+  --chart-fill: 79 70 229;         /* indigo-600 */
+  --panel-bg: 255 255 255;
+  --panel-border: 226 232 240;     /* slate-200 */
+  --chart-line-1: 79 70 229;       /* indigo-600 */
+  --chart-line-2: 16 185 129;      /* emerald-500 */
+  --chart-line-3: 234 179 8;       /* amber-400 */
+}
+
+/* 카드 기본 스타일 */
+.card{
+  @apply rounded-2xl border shadow-sm;
+  background: rgb(var(--panel-bg));
+  border-color: rgb(var(--panel-border));
+}
