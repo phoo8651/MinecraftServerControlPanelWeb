@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { api } from "../lib/api.js";
+import { fmt2 } from "../utils/format.js";
 import Card from "../components/Card.jsx";
 import ChartPanel from "../components/ChartPanel.jsx";
 import WorldActivityCard from "../components/WorldActivityCard";
@@ -112,8 +113,8 @@ export default function Dashboard() {
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <Card title="Status" value={ok ? "OK" : "DEGRADED"} sub={`Last: ${lastTs}`} accent={ok ? "ok" : "warn"} />
-        <Card title="TPS" value={status?.perf?.tps ?? "-"} sub="Target: 20.0" />
-        <Card title="MSPT" value={status?.perf?.mspt ?? "-"} sub="Lower is better" />
+        <Card title="TPS" value={fmt2(status?.perf?.tps)} sub="Target: 20.0" />
+        <Card title="MSPT" value={fmt2(status?.perf?.mspt)} sub="Lower is better" />
         <Card title="Online / Registered" value={`${status?.counts?.online ?? "-"} / ${status?.counts?.registered ?? "-"}`} sub={`Server: ${status?.serverId ?? "-"}`} />
       </div>
 
@@ -146,8 +147,8 @@ export default function Dashboard() {
           <div className="mt-3 grid grid-cols-2 gap-3 text-sm">
             <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 p-3">
               <div className="text-xs text-slate-500 dark:text-slate-400">CPU</div>
-              <div className="text-lg font-bold mt-1">{status?.system?.cpuPct ?? "-"}%</div>
-              <div className="text-xs text-slate-500 dark:text-slate-400">load1: {status?.system?.load1 ?? "-"}</div>
+              <div className="text-lg font-bold mt-1">{fmt2(status?.system?.cpuPct)}%</div>
+              <div className="text-xs text-slate-500 dark:text-slate-400">load1: {fmt2(status?.system?.load1)}</div>
             </div>
             <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 p-3">
               <div className="text-xs text-slate-500 dark:text-slate-400">Memory</div>
@@ -159,12 +160,12 @@ export default function Dashboard() {
             <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 p-3">
               <div className="text-xs text-slate-500 dark:text-slate-400">Disk</div>
               <div className="text-lg font-bold mt-1">{status?.system?.diskUsedPct ?? "-"}%</div>
-              <div className="text-xs text-slate-500 dark:text-slate-400">used</div>
+              <div className="text-lg font-bold mt-1">{fmt2(status?.system?.diskUsedPct)}%</div>
             </div>
             <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 p-3">
               <div className="text-xs text-slate-500 dark:text-slate-400">Network</div>
-              <div className="mt-1">IN: {status?.system?.netInKbps ?? "-"} kbps</div>
-              <div>OUT: {status?.system?.netOutKbps ?? "-"} kbps</div>
+              <div className="mt-1">IN: {fmt2(status?.system?.netInKbps)} kbps</div>
+              <div>OUT: {fmt2(status?.system?.netOutKbps)} kbps</div>
             </div>
           </div>
         </div>

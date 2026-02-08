@@ -1,4 +1,5 @@
 import React, { useMemo } from "react";
+import { fmt2 } from "../utils/format.js";
 import {
   Chart as ChartJS,
   CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Legend, Filler, TimeScale
@@ -47,7 +48,7 @@ export default function ChartPanel({ title, labels, values, unit = "" }) {
       tooltip: {
         enabled: true,
         callbacks: {
-          label: (ctx) => `${ctx.parsed.y}${unit}`,
+          label: (ctx) => `${fmt2(ctx.parsed.y)}${unit}`,
         }
       }
     },
@@ -58,7 +59,11 @@ export default function ChartPanel({ title, labels, values, unit = "" }) {
       },
       y: {
         grid: { color: colors.grid },
-        ticks: { color: colors.text, maxTicksLimit: 5 },
+        ticks: {
+          color: colors.text,
+          maxTicksLimit: 5,
+          callback: (value) => `${fmt2(value)}`,
+        }
       },
     }
   }), [colors, unit]);
